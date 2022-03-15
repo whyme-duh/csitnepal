@@ -1,0 +1,79 @@
+{% extends "blog/base.html"%}
+
+
+{%block content %}
+	<div class="container">
+		<div class="card rounded pt-5 pb-5 align-items-center" style="background-color: #ddbea9;">
+			{%for sub in subjects|slice:"1" %}
+				<h1 class="title h1 font-weight-bold " >{{sub.semester}}</h1>
+			{%endfor %}
+
+		</div>
+		<div class="content mt-3 ">
+			<p class="sub-intro text-center h2">Given below are the subjects.</p>
+			<div class="box row d-flex justify-content-center  pt-3 pb-5" >
+				
+				{% for sem in subjects %}
+					<div class=" col-md-8 card m-1 " >
+						{# it links up with subject-detail #}
+						<a href = "{% url 'subject-detail' sem.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
+							<div class="row content-subject pt-3 d-flex justify-content-between">
+								<h4 class="sem-title col-md-6">{{sem.title}}</h4>
+								{% if sem.difficulty == "MEDIUM" %}
+									<div class="col-md-6 difficulty">
+										<p class="p-1"><strong>Difficulty</strong>: </p>
+										<div class="span p-1">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+								
+								{% elif sem.difficulty == "EASY" %}
+									<div class="col-md-6 difficulty ">
+										<p class="p-1"><strong>Difficulty</strong>: </p>
+										<div class="span p-1">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+											<span class="fa fa-star"></span>
+										</div>
+									</div>
+								{% elif sem.difficulty == "HARD" %}
+									<div class="col-md-6 difficulty">
+										<p class="p-1"><strong>Difficulty</strong>: </p>
+										<div class="span p-1">
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+											<span class="fa fa-star checked"></span>
+										</div>
+									</div>
+								{% endif %}
+							
+							</div>
+							<div class="content-code d-flex justify-content-between">
+								<p class="article-content">{{sem.code}}</p>
+								<p class="content"><strong>Full Marks : </strong>{{sem.fullMarks}}</p>
+								<p class="content"><strong>Practical Marks : </strong>{{sem.labMarks}}</p>
+							</div>
+							
+
+
+							
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+			<div class="row d-flex justify-content-evenly pt-4 pb-5"  >
+				
+			</div>
+		</div>
+	</div>
+		
+{% endblock content %}

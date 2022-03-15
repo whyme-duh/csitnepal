@@ -1,0 +1,65 @@
+{% extends "blog/base.html"%}
+
+
+{%block content %}
+	<div class="media d-flex">
+		<div class="row w-100">
+		{% if blogs %}
+			{% for blog in blogs %}
+
+			<div class="col-md-12">
+				<article class="media content-section ">
+					<div class="media-body d-flex">
+						<img src="{{ blog.author.profile.image.url }}" class = " rounded-circle article-img" alt="">
+						<div class="content">
+							<div class="article-metadata mt-2 ">
+								<div class="row w-100 d-flex">
+									<a class="text-decoration-none h4 col-md-8" href="#" >{{ blog.author|title }}</a>
+									<div class="time col-md-4">
+										<small class="text-muted ">{{ blog.datePosted|date:"F d, Y" }}</small>
+
+									</div>
+								</div>	
+								
+							</div> 
+							<h2><a class="article-title text-dark " href="{% url 'blog-detail' blog.id %}">{{ blog.title|title }}</a></h2>
+							<p class="article-content"> {{ blog.content|truncatewords:100 }}</p>
+						</div>
+					</div>	
+				</article>
+			</div>
+			{% endfor %}
+			<div class="paginator mt-5 text-center">
+				{% if is_paginated %}
+					{% if page_obj.has_previous %}
+						<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+						<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+					{% endif %}
+
+					{% for num in page_obj.paginator.page_range %}
+						{% if page_obj.number == num %}
+							<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+						{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+							<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+
+						{% endif %}
+
+					{% endfor %}
+					{% if page_obj.has_next %}
+						<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number}}">Next</a>
+						<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+					{% endif %}
+				{% endif %}
+			</div>
+		</div>
+		{%else %}
+			<div class=" text-right">
+				<h5><i>There are not any blogs right now.</i></h5>
+			</div>	
+		{%endif%}
+		
+		
+	</div>
+	
+		
+{% endblock content %}

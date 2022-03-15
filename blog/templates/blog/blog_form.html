@@ -1,0 +1,26 @@
+{% extends "blog/base.html"%}
+{% load crispy_forms_tags %}
+{%block content%}
+	<div class="content-section">
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">Your Blog</legend>
+				<small><strong>Note*</strong>: Post your experience about your career and other news at the current moment.</small>
+				<div class="form pt-2">
+				{{ form|media }}
+
+				{{ form|crispy }}
+
+				</div>
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info mt-3" type="submit">
+					Post
+				</button>
+			</div>
+
+		</form>
+		
+	</div>
+{% endblock content %}

@@ -1,0 +1,88 @@
+{% extends "blog/base.html"%}
+
+
+{%block content %}
+	<div class="container">
+		{% if notes %}
+			<div class="card rounded pt-5 pb-5 align-items-center" style="background-color: #ddbea9;">
+				{% for object in notes|slice:"1"%}
+					<h1 class="title font-weight-bold h1" >{{object.subject}}</h1>
+				{%endfor %}
+			</div>
+			<div class="content mt-5 pb-5">
+				<p class="sub-intro text-center h4">Below are the notes, syllabus, question collections and question solutions.</p>
+				<div class="row justify-content-center pt-3"  >
+					<div class="box col-md-12 col-xs-3 p-3 m-4">
+						<h3 class="note-title text-center ">Notes/Books</h3>
+						<div class="row content justify-content-center pt-3">
+							{% for object in notes %}
+								{% if object.category.name == "NB" %}
+									<div class="col-md-3 note-detail m-1 p-2 ">
+										<a href="{{object.files.url}}" class="text-dark">
+											<h5 class="text-center">{{object.name|title}}</h5>	
+										</a>
+									</div>
+								{% endif %}
+							{%endfor %}
+							
+						</div>
+					</div>
+					<div class="box col-md-12 col-xs-3  p-3 m-4">
+						<h3 class="note-title text-center ">Question Collections</h3>
+						<div class="row content justify-content-center pt-3">
+							{% for object in notes %}
+								{% if object.category.name == "QC" %}
+									<div class="col-md-3 note-detail m-1 p-2 ">
+										<a href="{{object.files.url}}" class="text-decoration-none text-dark">
+											<h5 class="text-center">{{object.name|title}}</h5>	
+
+										</a>
+									</div>
+								{% endif %}
+							{%endfor %}
+							
+						</div>
+					</div>
+					<div class="box col-md-12 col-xs-3  p-3 m-4">
+						<h3 class="note-title text-center ">Syllabus</h3>
+						<div class="row content justify-content-center pt-3">
+							{% for object in notes %}
+								{% if object.category.name == "S" %}
+									<div class="col-md-3 note-detail m-1 p-2">
+										<a href="{{object.files.url}}" class="text-decoration-none text-dark">
+											<h5 class="text-center">{{object.name|title}}</h5>	
+
+										</a>
+									</div>
+								{% endif %}
+							{% endfor %}
+						
+						</div>
+					</div>
+					<div class="box col-md-12 col-xs-3  p-3 m-4">
+						<h3 class="note-title text-center ">Answer Collections </h3>
+						<div class="content justify-content-center pt-3">
+							{% for object in notes %}
+								{% if object.category.name == "AC" %}
+									<div class="col-md-4 note-detail m-1 p-2 ">
+										<a href="{{object.files.url}}" class="text-decoration-none">
+											<h5 class="text-center">{{object.name|title}}</h5>	
+
+										</a>
+									</div>
+								{% endif %}
+							{%endfor %}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		{% else %}
+		<div class="center">
+			<h3 class="text-center p-5"><em>Has not uploaded anything for now.</em></h3>
+
+		</div>
+		{% endif %}
+	</div>
+		
+{% endblock content %}
