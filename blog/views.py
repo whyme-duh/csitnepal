@@ -1,3 +1,5 @@
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from blog.forms import CommentForm
 from .models import Blog, Comments,  Post
 from django.shortcuts import get_object_or_404, redirect, render
@@ -16,6 +18,11 @@ context = {
         "posts" : Post.objects.all(),
         
     }
+def LikeView(request, pk):
+    blog = get_object_or_404(Blog, id= request.POST.get('blog_id'))
+    blog.likes.add(request.user)
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+
 
 
 class BlogListView(ListView):
@@ -26,13 +33,15 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = Blog
+    context_object_name = "blogs"
+
 
 class CreateBlogView(LoginRequiredMixin, CreateView):
     # creates post searches for the template based on the naming => <app>/<model>_<viewtype>.html
     # blog_form.html is being used in this and updatepost view
     
     model = Blog    
-    fields = ['title', 'content']
+    fields = ['title', 'sub_title', 'content', ]
     success_url = '/blogs'
 
 

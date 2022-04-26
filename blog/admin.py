@@ -5,7 +5,11 @@ from .models import Comments, Post,  Blog
 # here we create a POst model
 
 admin.site.register(Post)
-admin.site.register(Blog)
+@admin.register(Blog)
+class BlogAdmin(admin.ModelAdmin):
+	list_display = ('title','author',)
+	list_filter = ('title', )
+	prepopulated_fields = {"slug": ("title",)}
 
 
 

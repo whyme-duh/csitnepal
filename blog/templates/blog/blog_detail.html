@@ -1,90 +1,123 @@
 {% extends "blog/base.html"%}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div class="media flex-column">
-		<div class="row w-100">
-			<div class="col-md-12">
-				<article class="media content-section">
-					<div class="media-body ">
-						<div class="article-metadata d-flex justify-content-between">
-							<div class="row w-100">
-								<div class="title-box col-md-9">
-									<h2 class="article-title">{{ object.title|title }}</h2>
-									<small class=" text-muted">{{ object.datePosted|date:"F d, Y" }}</small>
+	<div class=" container-fluid  flex-column p-5 ">
+		<div class="row blog-media d-flex">
+			<div class="col-md-8">
+				<div class="col-md-12 d-flex justify-content-between">
+					<div class="blog-content col-md-12">
+						<article class="media ">
+							<div class="media-body ">
+				
+								<div class="article-metadata ">
+									<div class="content-media w-100 d-flex justify-content-between">
+				
+				
+										<div class="detail-name d-flex justify-content-between">
+											<img src="{{ object.author.profile.image.url}}" class=" article-img" alt="profile-pic">
+											<div class="name-date">
+												<a class="mr-2 text-decoration-none h3 text-dark" href="{% url 'user-post' object.author.username %}">{{ object.author|title }}</a>
+												<small class=" text-muted">{{ object.datePosted|date:"F d, Y" }}</small>
+											</div>
+										</div>
+				
+										<div class="link-container pr-5 ">
+											<a href="{{ object.author.profile.InstaLink }} "
+												class="fa fa-instagram text-decoration-none  "></a>
+											<a href="{{ object.author.profile.TwitterLink }}"
+												class="fa fa-twitter text-decoration-none "></a>
+											<a href="{{ object.author.profile.GithubLink }}"
+												class="fa fa-github text-decoration-none"></a>
+											<a href="{{ object.author.profile.facebookLink }} "
+												class="fa fa-facebook text-decoration-none"></a>
+										</div>
+				
+									</div>
+									<div class="row w-100 pt-4 ">
+										<div class=" col-md-12">
+											<h2 class="article-title font-weight-bold">{{ object.title|title }}</h2>
+											<h5 class="pt-2">{{object.sub_title|title}}</h5>
+										</div>
+				
+									</div>
 								</div>
-								<div class="options col-md-3">
-									{% if object.author == user %}
-	
-									<button class="btn btn-primary btn-sm mt-1 mb-1" onclick="{{ object.likes }}">Like {{ object.likes }}</button>
-									<a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-update' object.id %}">Update</a>
-									<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-delete' object.id %}">Delete</a>
-									{% else %}
-									<button class="btn btn-primary btn-sm mt-1 mb-1" onclick="{{ object.likes }}">Like {{ object.likes }}</button>
-									
-									{% endif %}
-								</div>
+								<p class=" mt-3 "> {{ object.content|safe }}</p>
+				
 							</div>
+						</article>
+						<div class="options col-md-3">
+				
+							{% if object.author == user %}
+							<form action="" , method="POST">
+								{% csrf_token %}
+								<button id="like-btn" class=" btn-primary btn-sm mt-1 mb-1" onclick="" type="submit" name="blog_id"
+									value="{{blog.id}}">Like </button>
+								<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-update' object.id %}">Update</a>
+								<a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-delete' object.id %}">Delete</a>
+								{% else %}
+								<button id="like-btn" class="btn btn-primary btn-sm mt-1 mb-1"
+									onclick="counterFunction(1);">Like</button>
+				
+							</form>
+				
+				
+				
+							{% endif %}
+				
 						</div>
-						<p class="article-content mt-3 "> {{ object.content }}</p>
-						<hr class="mt-5">
-						<div class="content-media d-flex ">
-							
-							<img src="{{ object.author.profile.image.url}}" class = "w-10 h-10 article-img" alt="profile-pic" >
-							<div class="detail-name">
-								<a class="mr-2 text-decoration-none h3 text-dark" href="#">{{ object.author|title }}</a>
-								<p class="text-secondary">{{ object.author.email }}</p>
-								<div class="link-container w-10 ">	
-									<a href= "{{ object.author.profile.InstaLink }} " class="fa fa-instagram text-decoration-none p-1 "></a>
-									<a href="{{ object.author.profile.TwitterLink }}" class="fa fa-twitter text-decoration-none p-1"></a>
-									<a href="{{ object.author.profile.GithubLink }}" class="fa fa-github text-decoration-none p-1"></a>
-									<a href="{{ object.author.profile.facebookLink }} " class="fa fa-facebook text-decoration-none p-1"></a>
-								</div>
-							</div>
-							
-						</div>
-					</div>	
-				</article>
-			</div>
-			<div class="col-md-12 ">
-				<div class="card-body">
-				<h5 >Comments</h5>
-	
-				{% for comment in blog.blog_comments.all %}
-				<div class="comments" style="padding: 10px;">
-					<p class="font-weight-bold">
-						<strong>{{ comment.name }}</strong>
-						<span class=" text-muted font-weight-normal">
-						 {{ comment.created }}
-						</span>
-					</p>
-				{{ comment.body | linebreaks }}
+					</div>
+				
 				</div>
-				{% empty %}
-				<p>There are no comments this post.</p>
-				{% endfor %}
-				{% if new_comment %}
-					<div class="alert alert-success" role="alert">
-						Your comment is awaiting moderation
+				
+				<div class="col-md-12 ">
+					<div class="card-body">
+						<h5>Comments</h5>
+				
+						{% for comment in blog.blog_comments.all %}
+						<div class="comments" style="padding: 10px;">
+							<p class="font-weight-bold">
+								<strong>{{ comment.name }}</strong>
+								<span class=" text-muted font-weight-normal">
+									{{ comment.created }}
+								</span>
+							</p>
+							{{ comment.body | linebreaks }}
+						</div>
+						{% empty %}
+						<p>There are no comments this post.</p>
+						{% endfor %}
+						{% if new_comment %}
+						<div class="alert alert-success" role="alert">
+							Your comment is awaiting moderation
+						</div>
+						{% endif %}
+						<form method="POST">
+							{% csrf_token %}
+							<fieldset class="form-group ">
+								<legend class="border-bottom mb-4">Leave Comment</legend>
+								{{form|crispy}}
+							</fieldset>
+							<div class="form-group">
+								<a class="btn btn-outline-info" href="{% url 'blog-detail-comment' object.id %}">
+									Comment
+								</a>
+							</div>
+				
+						</form>
+				
 					</div>
-				{% endif %}
-				<form method="POST" enctype="multipart/form-data">
-					{% csrf_token %}
-					<fieldset class="form-group ">
-						<legend class="border-bottom mb-4">Leave Comment</legend>
-							{{form|crispy}}
-					</fieldset>
-					<div class="form-group">
-						<a class="btn btn-outline-info"  href="{% url 'blog-detail-comment' object.id %}">
-							Comment
-						</a>
-					</div>
-		
-				</form>
-				  
-				  </div>
-			  
+				
+				</div>
 			</div>
+			<div class="related-post col-md-4">
+				<h5 class=" font-weight-normal">Related Post</h5>
+				
+			</div>
+			
+			
+			
 		</div>
+		
 		
 	</div>
 		

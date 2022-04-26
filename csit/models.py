@@ -62,6 +62,7 @@ class Category(models.Model):
 
 
 class NoteFile(models.Model):
+	link = models.URLField(blank=False, null = True)
 	subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="files", null=True)
 	category = models.ForeignKey(Category , on_delete=models.SET_NULL, related_name= "categories", null = True)
 	files = models.FileField(upload_to='adminuploads/' , blank = True)

@@ -1,3 +1,4 @@
+from email.policy import default
 from pickle import FALSE
 from django.db import models
 from django.db.models.fields import TextField
@@ -29,10 +30,11 @@ class Post(models.Model):
 
 class Blog(models.Model):
 	title = models.CharField(max_length= 100)
+	sub_title = models.CharField(max_length=100, null = True)
 	content = RichTextField(blank = False, null = False)
-
 	datePosted = models.DateTimeField(default= timezone.now)
-	likes = models.IntegerField(default= 0)
+	# likes = models.ManyToManyField(User, related_name="blog_likes")	
+	slug= models.SlugField(null = True, unique=True)
 	
 	# as one post have only one user but one user might have multiple posts
 	author = models.ForeignKey(User, on_delete= models.CASCADE)
@@ -40,9 +42,10 @@ class Blog(models.Model):
 	def __str__(self):
 		return f'{self.title} created by {self.author} on {self.datePosted}.'
 
+	
 	def get_absolute_url(self):
-		# return reverse('post-detail', kwargs= {'pk': self.pk})
-		return reverse('blog-home')
+		return reverse('blog-detail' ,kwargs = {'slug': self.slug})
+
 
 class Comments(models.Model):
 	post = models.ForeignKey(Post, on_delete= models.CASCADE, related_name= "comments", null=True, blank=True)

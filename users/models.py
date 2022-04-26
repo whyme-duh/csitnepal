@@ -9,7 +9,7 @@ class Profile(models.Model):
 	InstaLink = models.URLField(blank=True)
 	GithubLink = models.URLField(blank=True)
 	TwitterLink = models.URLField(blank= True)
-
+	
 
 	def __str__(self):
 		return f'{self.user.username} Profile'

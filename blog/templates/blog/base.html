@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{% static 'blog/index.js' %} "></script>
   
   {% if title %}
     <title>{{title}}</title>
@@ -63,7 +64,7 @@
       </div>
    </nav>
   </header>
-  <main role="main" class="container pt-4">
+  <main role="main" class="container-fluid p-0 m-0" >
     {% if messages %}
       {% for msg in messages  %}
         <div class="alert alert-{{ msg.tags }}">
@@ -73,7 +74,27 @@
     {% endif %}
     {% block content %}{% endblock %}
   </main>
-   
+  <footer class="page-footer bg-light">
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-12 d-flex justify-content-center pt-4">
+          <!-- <img src="images/icons/logo.jpg" alt="logo" class="icon img-fluid"> -->
+          <h5 class="pt-1 m-1">RITIKWITHOUT_H</h5>
+        </div>
+        <div class="col-md-12 ">
+          <h5 class="footer-title pt-1 m-1 text-center ">FOLLOW ME</h5>
+          <div class="social-media p-2 text-center">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-pinterest"></a>
+            <a href="#" class="fa fa-github"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright text-center py-3"><small>© Copyright Reserved </small>
+      </div>
+    </div>
+  </footer>
   
   
 

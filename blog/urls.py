@@ -18,6 +18,7 @@ from . views import (PostListView,
 				BlogDeleteView,
 				BlogDetailView,
 				
+				
 			)
 from .import views 
 
@@ -30,8 +31,9 @@ urlpatterns = [
     path('blog/create/', CreateBlogView.as_view(), name='blog-create'),
     path('post/<int:pk>/update/', UpdatePostView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+	# path('like/<int:pk>', LikeView, name = "like_blog"),
 	path('userpost/', LoginUserPost.as_view(), name = "user-post"),
-    path('blog/<int:pk>/', BlogDetailView.as_view(), name='blog-detail'),
+    path('blog/<slug:slug>/', BlogDetailView.as_view(), name='blog-detail'),
 	path('blog/<int:pk>/update/', UpdateBlogView.as_view(), name='blog-update'),
     path('blog/<int:pk>/delete/', BlogDeleteView.as_view(), name='blog-delete'),
 	path('post/<int:pk>/comment',CommentView.as_view(), name='post-detail-comment'),
