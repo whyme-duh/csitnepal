@@ -1,0 +1,167 @@
+body {
+	background: #f3f1ed;
+	color: #333333;
+  height: 100%;
+  min-height: 100%;
+	margin-top: 5rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+	color: #444444;
+  }
+  
+  ul{
+	margin: 0;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+	color: #1c1d1f;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+	opacity: 0.7;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+	font-weight: 500;
+  }
+  
+  .title{
+	  font-size: 3em;
+	  font-family: 'Courier New', Courier, monospace;
+  }
+  .files{
+	  background-color: rgb(175, 195, 212);
+  }
+  .sem-content {
+	  width: auto;
+  }
+
+  .author{
+    text-decoration: none;
+  }
+  .footer{
+    background-color: rgb(209, 157, 229);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .sem-content:hover{
+    color: rgb(96, 152, 224);
+  }
+  .box{
+    border-radius: 15px;
+    background-color: rgb(235, 231, 231);
+  }
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    text-decoration: none;
+	
+  }
+  .checked{
+    color:orange;
+  }
+  
+  a.article-title:hover {
+	  opacity: 0.8;
+  }
+  .glyphicon-log-in {
+    color: black;
+    width: 100px;
+    height: 100px;
+  }
+  .article-content {
+	white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+ 
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    justify-content: space-between;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+	width: 25px;
+	height: 25px;
+	vertical-align: middle;
+  }
+  
+  .account-img {
+	height: 125px;
+	width: 125px;
+	margin-right: 20px;
+	margin-bottom: 16px;
+  }
+  
+  .account-heading {
+	font-size: 2.5rem;
+  }
+  .note-detail{
+    background-color: #c5c0bd;
+  }
+  .file-name{
+    text-decoration: none;
+  }
+  .sem-title{
+    font-size: 1.25em;
+  }
+  
+
+/* media queries */
+
+@media screen and (max-width:450px){
+  
+  .content h4{
+    font-size: 1.35rem;
+  }
+  .difficulty{
+    width:100%;
+    font-size:0.85em;
+    justify-content: center;
+  }
+  .sub-intro{
+    font-size: 1.2em;
+  }
+  .sem-title{
+    font-size: 0.75em;
+    text-align: center;
+  }
+  /* subject page */
+  .content-subject h4{
+    font-size: 1.1em;
+  }
+  .content-code{
+    font-size: 0.85em;
+  }
+  
+  /* for the files page */
+  .note-title{
+    font-size: 1.25em;
+  }
+  .sem-content{
+    font-size: 1.15em;
+  }
+ 
+  
+}
+ 

@@ -1,0 +1,118 @@
+{% extends "blog/base.html"%}
+
+{%block content %}
+	<div class="media" >
+		<div class="row">
+			{# used for the blog posts#}
+			{%if blogs or posts %}
+				<h5>Your Blogs Uploads </h5>
+				{%if blogs%}
+					{% for blog in blogs%}
+						{% if blog.author == user %}
+							<div class="col-md-11 offset-1 p-3">
+								<article class="media content-section ">
+									<div class="media-body ">
+										<div class="article-metadata d-flex justify-content-between">
+											<div class="detail d-flex">
+												<img src="{{ blog.author.profile.image.url}}" class = " rounded-circle article-img" alt="">
+												<div class="title-box flex-column">
+													<a class=" mr-2  text-decoration-none h4" href="#" >{{ blog.author|title }}</a>
+													<small class="m-2 text-muted">{{ blog.datePosted|date:"F d, Y" }}</small>
+												</div>
+												
+
+											</div>
+
+											<div class="options">
+												<a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog-update' blog.id %}">Update</a>
+												<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog-delete' blog.id %}">Delete</a>
+						
+											</div>
+										</div>
+
+										<h2><a class="article-title text-decoration-none text-dark" href="{% url 'blog-detail' blog.id %}">{{ blog.title|title }}</a></h2>
+										<p class="article-content"> {{ blog.content }}</p>
+									</div>	
+								</article>
+							
+							</div>
+							{% endif %}
+					{% endfor %}
+				{%else%}
+					<div class="center text-center pt-3">
+						<small>
+							You dont have any file uploads yet.
+						</small> 
+					</div>	
+				{%endif %}
+				<h5>Your File Uploads </h5>
+				{% if posts %}
+					{% for post in posts%}
+						{% if post.author == user %}
+							<div class="col-md-10">
+								<article class="media content-section ">
+									<div class="media-body ">
+										<div class="article-metadata d-flex justify-content-between">
+											<div class="detail">
+												<img src="{{ post.author.profile.image.url}}" class = " rounded-circle article-img" alt="">
+												<a class="mr-2 text-decoration-none h4" href="#" >{{ post.author|title }}</a>
+												<small class="m-2 text-muted">{{ post.datePosted|date:"F d, Y" }}</small>
+											</div>
+											<div class="options">
+												<a class = "btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' post.id %}">Update</a>
+												<a class = "btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' post.id %}">Delete</a>
+						
+											</div>
+										</div>
+
+										<h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+										<p class="article-content"> {{ post.content }}</p>
+									</div>	
+								</article>
+							
+							</div>
+							{% endif %}
+					{% endfor %}
+				{%else%}
+					<div class="center text-center pt-5">
+						<small >
+							You dont have any file uploads yet.
+						</small> 
+					</div>	
+				{%endif %}
+			{% else %}
+				<div class="center text-center pt-3">
+					<h5>You dont have any post yet. <a href="{% url 'blog-create' %}" class="text-decoration-none">Create One</a></h5>	
+				</div>
+			{% endif %}
+	
+		</div>
+			
+		
+	</div>
+	<div class="paginator mt-5 text-center">
+
+		{% if is_paginated%}
+			{% if page_obj.has_previous %}
+				<a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+				<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+			{% endif %}
+
+			{% for num in page_obj.paginator.page_range %}
+				{% if page_obj.number == num %}
+					<a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+				{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3'%}
+					<a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+
+				{% endif %}
+
+			{% endfor %}
+			{% if page_obj.has_next %}
+				<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number}}">Next</a>
+				<a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+			{% endif %}
+		{% endif %}
+	</div>
+	
+		
+{% endblock content %}

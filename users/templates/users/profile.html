@@ -1,0 +1,46 @@
+{% extends "blog/base.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container content-section" >
+	<div class="media d-flex justify-content-between">
+		<div class="media-body p pr-5 d-flex">
+			<img class="h-10 account-img rounded-circle" src="{{ user.profile.image.url }}">
+			<div class="content w-75">
+				<h2 class="account-heading">{{ user.username }}</h2>
+				<div class="link-container w-10 ">
+				<a href= "{{ user.profile.InstaLink }} " class="fa fa-instagram text-decoration-none p-1"></a>
+				<a href="{{ user.profile.TwitterLink }}" class="fa fa-twitter text-decoration-none p-1"></a>
+				<a href="{{ user.profile.GithubLink }}" class="fa fa-github text-decoration-none p-1"></a>
+				<a href="{{ user.profile.facebookLink }} " class="fa fa-facebook text-decoration-none p-1"></a>
+
+			</div>
+			<p class="text-secondary">{{ user.email }}</p>
+			<p class="text-primary text-dark ">{{ user.profile.bio }}</p>
+			</div>
+		</div>
+		<div class="links">
+			<a class="btn btn-outline-info text-decoration-none " href="{% url 'user-post'%}">MY POSTS</a>
+		</div>
+	</div>
+	
+	<div class="content-section mt-5"> 
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset class="form-group ">
+				<legend class="border-bottom mb-4">UPDATE YOUR PROFILE</legend>
+				{{ userUpdate_form|crispy }}
+				{{ profileUpdate_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit">
+					UPDATE
+				</button>
+			</div>
+
+		</form>
+		
+	</div>
+</div>
+
+{% endblock content %}

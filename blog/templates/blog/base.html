@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head >
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="media/icons/icon.jpg">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" type="text/css" href= "{% static 'blog/main.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{% static 'blog/index.js' %} "></script>
+  
+  {% if title %}
+    <title>{{title}}</title>
+  {% else %}
+    <title>CSIT NEPAL</title>
+  {% endif %}
+
+</head>
+<body>
+	<header class="site-header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <!-- <a class="navbar-brand" href="{% url 'csit' %}" style="color: black;font-weight: 900;font-size: 1.75em;"><img src="media/icons/logo.png" alt="LOGO" width="150"></a> -->
+        <a class="navbar-brand" href="{% url 'csit' %}" style="color: black;font-weight: 900;font-size: 1.75em;">CSIT NEPAL</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav h5">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blogs' %}">BLOGS </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog-home' %}">USER UPLOADS</a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav ml-auto h5">
+            {% if user.is_authenticated  %}
+              <li class="dropdown">
+                <a class="dropdown-toggle nav-item nav-link" data-toggle="dropdown" href="#">ACTIONS
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu ">
+                  <li><a class="nav-item nav-link" href="{% url 'blog-create'%}">POST BLOG</a></li>
+                  <hr>
+                  <li><a class="nav-item nav-link" href="{% url 'post-create'%}">UPLOAD PDFS</a></li>
+                </ul>
+              </li>
+              
+              <li><a class="nav-item nav-link" href="{% url 'user-profile'%}">PROFILE</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+            
+            {% else %}
+              <li><a class="nav-item nav-link " href="{% url 'login' %}">LOGIN</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'user-registration' %}">SIGN UP</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+   </nav>
+  </header>
+  <main role="main" class="container-fluid p-0 m-0" >
+    {% if messages %}
+      {% for msg in messages  %}
+        <div class="alert alert-{{ msg.tags }}">
+          {{ msg }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="page-footer bg-light">
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-12 d-flex justify-content-center pt-4">
+          <!-- <img src="images/icons/logo.jpg" alt="logo" class="icon img-fluid"> -->
+          <h5 class="pt-1 m-1">RITIKWITHOUT_H</h5>
+        </div>
+        <div class="col-md-12 ">
+          <h5 class="footer-title pt-1 m-1 text-center ">FOLLOW ME</h5>
+          <div class="social-media p-2 text-center">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-pinterest"></a>
+            <a href="#" class="fa fa-github"></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright text-center py-3"><small>© Copyright Reserved </small>
+      </div>
+    </div>
+  </footer>
+  
+  
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+
+</body>
+</html>
