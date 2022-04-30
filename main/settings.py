@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 
 try:
-    SECRET_KEY =os.environ.get('SECRET_KEY_SETTINGS')
+    SECRET_KEY =os.environ['SECRET_KEY_SETTINGS']
 except KeyError as e:
     raise RuntimeError("Could not find a SECRET_KEY in environment") from e
 
