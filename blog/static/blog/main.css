@@ -63,15 +63,46 @@ ul {
 .sem-content:hover {
   color: rgb(96, 152, 224);
 }
-.box {
+#actual-links,
+#actual-links-question,
+#actual-links-syllabus,
+#actual-links-answer
+{
+  display: none;
+  opacity: 1;
+}
+
+.box,
+.sem-box {
   border-radius: 15px;
-  background-color: rgb(235, 231, 231);
+  
+}
+.sem-box .card{
+  border: 0;
+  box-shadow: 5px 5px 5px rgb(223, 222, 222);
+  border-radius:20px ;
+  background-color: rgb(242, 243, 242);
 }
 .content-section {
   padding: 10px 20px;
   border-radius: 15px;
 }
-
+.box .fa:hover{
+  opacity: 0.5;
+}
+#arrow-down ,
+#arrow-down-question,
+#arrow-down-syllabus{
+  display: block;
+}
+.files-title{
+  opacity: 0.5;
+  transition: opacity 0.3s linear 2s;
+}
+.files-title:hover{
+  color: white;
+  text-decoration: none;
+}
 .article-title {
   text-decoration: none;
 }
@@ -89,7 +120,8 @@ a.article-title:hover {
 }
 .article-content {
   white-space: pre-line;
-  font-weight: 00;
+  font-size: 1em;
+  font-weight: 200;
 }
 
 .article-img {
@@ -237,9 +269,7 @@ a.article-title:hover {
   color: grey;
   padding: 1em;
 }
-.article-content {
-  font-size: 1em;
-}
+
 
 .footer-title {
   font-family: var(--family-font);
@@ -277,6 +307,12 @@ a.article-title:hover {
     font-size: 0.75em;
     text-align: center;
   }
+  .semester-desc{
+    text-align: center;
+  }
+  .sem-box{
+    padding: 1em;
+  }
   /* subject page */
   .content-subject h4 {
     font-size: 1.1em;
@@ -300,7 +336,8 @@ a.article-title:hover {
     font-size: 0.85em;
   }
   .article-content {
-    font-size: 0.25em;
+    font-size: 1em;
+    font-weight: 600;
   }
   /* for blog detail */
   .blog-media {

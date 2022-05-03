@@ -6,13 +6,13 @@
 		</div>
 		<div class="content mt-4 pb-5">
 			<p class="sub-intro text-center h5 pb-2">Here you can find the latest notes, syllabus, question collection and solutions pdf with ease. You can also access the user provided files.</br>Access the files of the respective semester through the following options.</p>
-			<div class="box row d-flex justify-content-center  pt-3 pb-3" >
+			<div class="sem-box row d-flex justify-content-center  pt-3 pb-3" >
 				{% for sem in semester %}
-					<div class=" col-sm-12 col-md-8 card m-1" >
+					<div class="card col-sm-12 col-md-8  m-3 p-2" >
 						{# it links up with subject-detail #}
 						<a href = "{% url 'semester-detail' sem.id %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
 							<div class="row content pt-3 d-flex justify-content-between">
-								<h4 class="sem-title col-md-6 ">{{sem.title}}</h4>
+								<h4 class="sem-title col-md-6 pl-4">{{sem.title}}</h4>
 								{% if sem.difficulty == "MEDIUM" %}
 									<div class=" col-md-6 difficulty  ">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
@@ -50,7 +50,7 @@
 								{% endif %}
 							
 							</div>
-							<p class="content ptr-2">{{sem.content}}</p>
+							<p class="semester-desc pl-2">{{sem.content}}</p>
 						</a>
 					</div>
 				{% endfor %}

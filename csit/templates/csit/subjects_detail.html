@@ -15,10 +15,10 @@
 
 		<div class="content mt-3 ">
 			<p class="sub-intro text-center h2">Given below are the subjects.</p>
-			<div class="box row d-flex justify-content-center  pt-3 pb-5" >
+			<div class="sem-box row d-flex justify-content-center  pt-3 pb-5" >
 				
 				{% for sem in subjects %}
-					<div class=" col-md-8 card m-1 " >
+					<div class=" col-md-8 card m-2 " >
 						{# it links up with subject-detail #}
 						<a href = "{% url 'subject-detail' sem.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
 							<div class="row content-subject pt-3 d-flex justify-content-between">
