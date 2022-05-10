@@ -31,7 +31,7 @@ SECRET_KEY = 'SECRET_KEY_SETTINGS'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
     
-ALLOWED_HOSTS = ['studynotesnepal.herokuapp.com',  '127.0.0.1', '[::1]'] 
+ALLOWED_HOSTS = ['studynotesnepal.herokuapp.com',  '127.0.0.1', '[::1]', '*'] 
 
 
 

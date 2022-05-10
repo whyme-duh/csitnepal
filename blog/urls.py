@@ -24,7 +24,7 @@ from .import views
 
 urlpatterns = [
 	path('posts/' , PostListView.as_view(), name = 'blog-home'),
-	path('blogs/' , BlogListView.as_view(), name = 'blogs'),
+	path('' , BlogListView.as_view(), name = 'blogs'),
 	path('user/<str:username>' , UserPostListView.as_view(), name = 'user-post'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/create/', CreatePostView.as_view(), name='post-create'),

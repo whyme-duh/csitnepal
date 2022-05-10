@@ -15,85 +15,98 @@
 				
 			<div class="content mt-5 pb-5">
 				<p class="sub-intro text-center h4">Below are the notes, syllabus, question collections and question solutions.</p>
-				<div class="row sem-box justify-content-center align-items-center  pt-3"  >
-					<div class="card col-md-10 col-sm-3 p-3 ">
-						<h3 class=" note-title text-center ">Notes/Books <i class="fa fa-angle-down " id ="arrow-down" onclick="display('actual-links', 'arrow-down')"></i></h3>
+				<div class=" sem-box row d-flex justify-content-between pt-3"  >
+					<div class="col-md-8">
+						<div class="card col-md-12 col-sm-3 p-3 ">
+							<h3 class=" note-title text-center ">Notes/Books <i class="fa fa-angle-down " id="arrow-down"
+									onclick="display('actual-links', 'arrow-down')"></i></h3>
 						
 						
-						<div class=" pt-3" id ="actual-links">
-							
-							{% for object in notes %}
+							<div class=" pt-3" id="actual-links">
+						
+								{% for object in notes %}
 								{% if object.category.name == "NB" %}
-									<ul>
-										<li class="mw-100">
-											<a href="{{object.link}}" class=" files-title  ">
-												<h5 class="">{{object.name|title}}</h5>
-											</a>
-										</li>
-									</ul>
-									
+								<ul>
+									<li class="mw-100">
+										<a href="{{object.link}}" class=" files-title  ">
+											{{notescount}}
+											<h5 class="">{{object.name|title}}</h5>
+										</a>
+									</li>
+								</ul>
 								{% endif %}
-							{%endfor %}
-							<div class="col-md-12 d-flex justify-content-center">
-								<h3 class="note-title"><i class=" fa fa-angle-up " onclick="offdisplay('arrow-down','actual-links' )"></i></h3>
+								{%endfor %}
+								<div class="col-md-12 d-flex justify-content-center">
+									<h3 class="note-title"><i class=" fa fa-angle-up " onclick="offdisplay('arrow-down','actual-links' )"></i>
+									</h3>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="card col-md-10 col-xs-3  p-3 mt-3">
-						<h3 class="note-title text-center ">Question Collections<i class=" 	fa fa-angle-down " id="arrow-down-question" onclick="display('actual-links-question', 'arrow-down-question')"></i></h3>
-						<div class="pt-3" id="actual-links-question" >
-							<div class="col-md-12 d-flex justify-content-center">
-								<i class=" fa fa-angle-up " onclick="offdisplay('arrow-down-question','actual-links-question')" style="font-size: 30px;"></i>
-							</div>
-							{% for object in notes %}
+						<div class="card col-md-12 col-xs-3  p-3 mt-3">
+							<h3 class="note-title text-center ">Question Collections<i class=" 	fa fa-angle-down " id="arrow-down-question"
+									onclick="display('actual-links-question', 'arrow-down-question')"></i></h3>
+							<div class="pt-3" id="actual-links-question">
+								<div class="col-md-12 d-flex justify-content-center">
+									<i class=" fa fa-angle-up " onclick="offdisplay('arrow-down-question','actual-links-question')"
+										style="font-size: 30px;"></i>
+								</div>
+								{% for object in notes %}
 								{% if object.category.name == "QC" %}
-									<ul>
-										<li>
-											<a href="{{object.link}}" class="text-dark">
-												<h5 class="">{{object.name|title}}</h5>
-											</a>
-										</li>
-									</ul>
+								<ul>
+									<li>
+										<a href="{{object.link}}" class="text-dark">
+											<h5 class="">{{object.name|title}}</h5>
+										</a>
+									</li>
+								</ul>
 								{% endif %}
-							{%endfor %}
-							
+								{%endfor %}
+						
+							</div>
 						</div>
-					</div>
-					<div class="card col-md-10 col-xs-3  p-3 mt-3 ">
-						<h3 class="note-title text-center ">Syllabus<i class=" 	fa fa-angle-down " id="arrow-down-syllabus" onclick="display('actual-links-syllabus','arrow-down-syllabus' )"></i></h3>
-						<div class="pt-3" id="actual-links-syllabus">
-							{% for object in notes %}
+						<div class="card col-md-12 col-xs-3  p-3 mt-3 ">
+							<h3 class="note-title text-center ">Syllabus<i class=" 	fa fa-angle-down " id="arrow-down-syllabus"
+									onclick="display('actual-links-syllabus','arrow-down-syllabus' )"></i></h3>
+							<div class="pt-3" id="actual-links-syllabus">
+								{% for object in notes %}
 								{% if object.category.name == "S" %}
-									<ul>
-										<li>
-											<a href="{{object.link}}" class="text-dark">
-												<h5 class="">{{object.name|title}}</h5>
-											</a>
-										</li>
-									</ul>
+								<ul>
+									<li>
+										<a href="{{object.link}}" class="text-dark">
+											<h5 class="">{{object.name|title}}</h5>
+										</a>
+									</li>
+								</ul>
 								{% endif %}
-							{% endfor %}
-							<div class="col-md-12 d-flex justify-content-center">
-								<i class=" fa fa-angle-up " onclick="offdisplay('arrow-down-syllabus', 'actual-links-syllabus')" style="font-size: 30px;"></i>
+								{% endfor %}
+								<div class="col-md-12 d-flex justify-content-center">
+									<i class=" fa fa-angle-up " onclick="offdisplay('arrow-down-syllabus', 'actual-links-syllabus')"
+										style="font-size: 30px;"></i>
+								</div>
+							</div>
+						</div>
+						<div class="card col-md-12 col-xs-3  p-3 mt-3">
+							<h3 class="note-title text-center ">Answer Collections </h3>
+							<div class="content justify-content-center pt-3">
+								{% for object in notes %}
+								{% if object.category.name == "AC" %}
+								<ul>
+									<li>
+										<a href="{{object.link}}" class="text-dark">
+											<h5 class="">{{object.name|title}}</h5>
+										</a>
+									</li>
+								</ul>
+								{% endif %}
+								{%endfor %}
+						
 							</div>
 						</div>
 					</div>
-					<div class="card col-md-10 col-xs-3  p-3 mt-3">
-						<h3 class="note-title text-center ">Answer Collections </h3>
-						<div class="content justify-content-center pt-3">
-							{% for object in notes %}
-								{% if object.category.name == "AC" %}
-									<ul>
-										<li>
-											<a href="{{object.link}}" class="text-dark">
-												<h5 class="">{{object.name|title}}</h5>
-											</a>
-										</li>
-									</ul>
-								{% endif %}
-							{%endfor %}
-							
-						</div>
+					<div class="col-md-3">
+						<h5>Other Subjects</h5>
+						{% for sem in subjects %}
+						{% endblock %}
 					</div>
 				</div>
 			</div>

@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
+    path('blogs/', include('blog.urls')),
     path('register/', user_views.register, name = "user-registration"),
     path('profile/', user_views.profile, name = "user-profile"),
     path('login/', auth_views.LoginView.as_view(template_name = "users/login.html"), name = "login"),
@@ -31,6 +31,9 @@ urlpatterns = [
 
 
 ]
+handler404= 'csit.views.error_404_view'
+handler500 = 'csit.views.error_500_view'
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

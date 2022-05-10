@@ -1,4 +1,4 @@
-
+from unicodedata import name
 from django.urls.conf import path
 from csit.views import SemesterDetailView, SemesterView, SubjectDetailView
 
@@ -8,3 +8,4 @@ urlpatterns = [
 	path('<slug:slug>/', SubjectDetailView.as_view(), name='subject-detail')
 	
 ]
+
