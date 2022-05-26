@@ -1,0 +1,9 @@
+semester must include following :
+	inside the subjects page of the respective semester, background about semester must be added to the page
+	overall difficulty of the semester
+
+single subject structure :
+	must include the idea of the subject
+	must include the subject strucutre : no of units, important units, 
+	must include no of questions that each unit poses
+	

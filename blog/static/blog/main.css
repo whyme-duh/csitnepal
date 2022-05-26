@@ -95,14 +95,7 @@ ul {
 #arrow-down-syllabus{
   display: block;
 }
-.files-title{
-  opacity: 0.5;
-  transition: opacity 0.3s linear 2s;
-}
-.files-title:hover{
-  color: white;
-  text-decoration: none;
-}
+
 .article-title {
   text-decoration: none;
 }

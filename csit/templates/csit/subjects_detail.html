@@ -8,7 +8,7 @@
 		<div class=" rounded d-flex justify-content-center align-items-center" style="background-color: #ddbea9;">
 			{%for sub in subjects|slice:"1" %}
 			<h1 class="title m-5">{{sub.semester}}</h1>
-			{%endfor %}
+			{%endfor %}	
 			
 		</div>
 		
@@ -22,9 +22,9 @@
 						{# it links up with subject-detail #}
 						<a href = "{% url 'subject-detail' sem.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
 							<div class="row content-subject pt-3 d-flex justify-content-between">
-								<h4 class="sem-title col-md-6">{{sem.title}}</h4>
+								<h4 class="sem-title col-md-8">{{sem.title}}</h4>
 								{% if sem.difficulty == "MEDIUM" %}
-									<div class="col-md-6 difficulty">
+									<div class="col-md-4 difficulty">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
 											<span class="fa fa-star checked"></span>
@@ -36,7 +36,7 @@
 									</div>
 								
 								{% elif sem.difficulty == "EASY" %}
-									<div class="col-md-6 difficulty ">
+									<div class="col-md-4 difficulty ">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
 											<span class="fa fa-star checked"></span>
@@ -47,7 +47,7 @@
 										</div>
 									</div>
 								{% elif sem.difficulty == "HARD" %}
-									<div class="col-md-6 difficulty">
+									<div class="col-md-4 difficulty">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
 											<span class="fa fa-star checked"></span>
