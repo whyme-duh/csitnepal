@@ -1,6 +1,11 @@
 from django.contrib import admin
 from .models import Category, Semester,Subject, NoteFile
-admin.site.register(Semester)
+
+
+@admin.register(Semester)
+class SemesterAdmin(admin.ModelAdmin):
+	prepopulated_fields = {'slug' : ('title', )}
+
 
 @admin.register(Subject)
 class SubjectAdmin(admin.ModelAdmin):
@@ -13,6 +18,9 @@ class SubjectAdmin(admin.ModelAdmin):
 @admin.register(NoteFile)
 class NoteFileAdmin(admin.ModelAdmin):
 	list_filter = ('subject','category', )
+	prepopulated_fields = {'slug' : ('name', ),
+		}
+
 
 	def save_model(self , request,obj, form, change):
 		obj.save()

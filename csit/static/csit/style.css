@@ -1,0 +1,38 @@
+/* this is used to style other subjects */
+.other-sub,
+.other-units{
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  background-color: rgb(250, 249, 247);
+  padding: 1.25em;
+  height: fit-content;
+  box-shadow: 5px 5px 5px rgb(173, 173, 173);
+  border-radius: 15px;
+}
+
+ .other-sub-title,
+ .other-units-title{
+  padding-bottom:1em ;
+  font-size: 1.25em;
+ }
+
+ .other-sub-item,
+ .other-note-item{
+    font-weight: 600;
+ }
+
+ @media screen and (max-width: 450px) {
+  .other-sub,
+  .other-units{
+    margin: 2em;
+    align-items: center;
+  }
+  .file-title{
+    font-size: 1em;
+  }
+  .other-sub-item,
+  .other-note-item{
+    font-size: 0.8em;
+  }
+}

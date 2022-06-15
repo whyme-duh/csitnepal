@@ -1,0 +1,27 @@
+{% extends "blog/base.html"%}
+
+{% block content %}
+<div class="container "">
+    <div class="row p-3 justify-content-between">
+        <div class="col-md-8 embed-responsive " style="height: 90vh;">
+            {% for note in notes%}
+            <iframe src="{{note.link}}" class="embed-responsive-item " allowfullscreen ></iframe>
+       
+            {% endfor %}
+          
+            
+        </div>
+        
+        <div class="other-units col-md-3 col-xs-3">
+            <h5 class="other-units-title text-center">Other Units</h5>
+            {%for related_note in related_notes%}
+                <div class="list-group">
+                    <a href="{% url 'single-file-detail' related_note.subject.semester.id related_note.subject.slug related_note.slug %}" class="other-note-item list-group-item text-decoration-none text-dark">{{related_note.name}}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content%}

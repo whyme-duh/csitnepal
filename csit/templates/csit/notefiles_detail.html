@@ -12,9 +12,11 @@
 
 				{%endfor %}
 			</div>
-				
+			
 			<div class="content mt-5 pb-5">
 				<p class="sub-intro text-center h4">Below are the notes, syllabus, question collections and question solutions.</p>
+				
+				
 				<div class=" sem-box row d-flex justify-content-between pt-3"  >
 					<div class="col-md-8">
 						<div class="card col-md-12 col-sm-3 p-3 ">
@@ -28,8 +30,9 @@
 								{% if object.category.name == "NB" %}
 								<ol class=" d-flex align-items-center">
 									<i class="fa fa-file-pdf-o" style="color: red;"></i>
-									<a href="{{object.link}}" >
-										<h5 class="text-dark pt-2 pl-2">{{object.name|title}}</h5>
+									<a href="{% url 'single-file-detail' object.subject.semester.id object.subject.slug object.slug %}" >
+										<h5 class="file-title text-dark pt-2 pl-2">{{object.name|title}}</h5>
+
 									</a>
 								</ol>
 								{% endif %}
@@ -101,9 +104,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-3">
-						<h5>Other Subjects</h5>
+					<div class="other-sub col-md-3 col-xs-3 justify-content-center align-items-center">
+						<h5 class="other-sub-title text-center">Other Subjects</h5>
 						{% for sem in subjects %}
+							<div class="list-group">
+								<!-- this link will route to the individual subjects -->
+								<a href= "{% url 'subject-detail' sem.semester.id sem.slug %}" class="other-sub-item list-group-item text-decoration-none text-dark">{{sem.title}}</a>
+							</div>
 						{% endfor %}
 					</div>
 				</div>

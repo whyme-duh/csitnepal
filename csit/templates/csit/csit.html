@@ -10,7 +10,7 @@
 				{% for sem in semester %}
 					<div class="card col-sm-12 col-md-8  m-3 p-2" >
 						{# it links up with subject-detail #}
-						<a href = "{% url 'semester-detail' sem.id %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
+						<a href = "{% url 'semester-detail' sem.id  %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
 							<div class="row content pt-3 d-flex justify-content-between">
 								<h4 class="sem-title col-md-6 pl-4">{{sem.title}}</h4>
 								{% if sem.difficulty == "MEDIUM" %}

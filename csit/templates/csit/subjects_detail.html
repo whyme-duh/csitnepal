@@ -17,13 +17,13 @@
 			<p class="sub-intro text-center h2">Given below are the subjects.</p>
 			<div class="sem-box row d-flex justify-content-center  pt-3 pb-5" >
 				
-				{% for sem in subjects %}
+				{% for sub in subjects %}
 					<div class=" col-md-8 card m-2 " >
 						{# it links up with subject-detail #}
-						<a href = "{% url 'subject-detail' sem.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
+						<a href = "{% url 'subject-detail' sub.semester.id sub.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
 							<div class="row content-subject pt-3 d-flex justify-content-between">
-								<h4 class="sem-title col-md-8">{{sem.title}}</h4>
-								{% if sem.difficulty == "MEDIUM" %}
+								<h4 class="sem-title col-md-8">{{sub.title}}</h4>
+								{% if sub.difficulty == "MEDIUM" %}
 									<div class="col-md-4 difficulty">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
@@ -35,7 +35,7 @@
 										</div>
 									</div>
 								
-								{% elif sem.difficulty == "EASY" %}
+								{% elif sub.difficulty == "EASY" %}
 									<div class="col-md-4 difficulty ">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
@@ -46,7 +46,7 @@
 											<span class="fa fa-star"></span>
 										</div>
 									</div>
-								{% elif sem.difficulty == "HARD" %}
+								{% elif sub.difficulty == "HARD" %}
 									<div class="col-md-4 difficulty">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
@@ -61,9 +61,9 @@
 							
 							</div>
 							<div class="content-code d-flex justify-content-between">
-								<p class="article-content">{{sem.code}}</p>
-								<p class="content"><strong>Full Marks : </strong>{{sem.fullMarks}}</p>
-								<p class="content"><strong>Practical Marks : </strong>{{sem.labMarks}}</p>
+								<p class="article-content">{{sub.code}}</p>
+								<p class="content"><strong>Full Marks : </strong>{{sub.fullMarks}}</p>
+								<p class="content"><strong>Practical Marks : </strong>{{sub.labMarks}}</p>
 							</div>
 							
 
