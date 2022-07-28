@@ -7,14 +7,35 @@ function counterFunction(likes){
 
 
 
-function display(showDisplay, offDisplay){
-	document.getElementById(showDisplay).style.display = "block";
-	document.getElementById(offDisplay).style.display = "none";
-	
-	
-}
-function offdisplay(showDisplay, offDisplay){
-	document.getElementById(showDisplay).style.display = "block";
+function display(showDisplay){
+	if (showDisplay == "actual-links"){
+		document.getElementById(showDisplay).style.display = "block";
+		document.getElementById('actual-links-question').style.display = "none";
+		document.getElementById('actual-links-syllabus').style.display = "none";
+		document.getElementById('actual-links-answer').style.display = "none";
+		
+	}
+	else if (showDisplay == "actual-links-question"){
+		document.getElementById(showDisplay).style.display = "block";
+		document.getElementById('actual-links').style.display = "none";
+		document.getElementById('actual-links-syllabus').style.display = "none";
+		document.getElementById('actual-links-answer').style.display = "none";
+		
+	}
+	else if (showDisplay == "actual-links-syllabus"){
+		document.getElementById(showDisplay).style.display = "block";
+		document.getElementById('actual-links').style.display = "none";
+		document.getElementById('actual-links-	question').style.display = "none";
+		document.getElementById('actual-links-answer').style.display = "none";
+		
+	}
+	else if (showDisplay == "actual-links-answer"){
+		document.getElementById(showDisplay).style.display = "block";
+		document.getElementById('actual-links').style.display = "none";
+		document.getElementById('actual-links-syllabus').style.display = "none";
+		document.getElementById('actual-links-question').style.display = "none";
+		
+	}
 	document.getElementById(offDisplay).style.display = "none";
 	
 	

@@ -1,17 +1,35 @@
 /* this is used to style other subjects */
+.tabs{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1em;
+}
+
+#notes-tab{
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: #c2f3c9;
+}
+#notes-tab:hover{
+  background-color:#86f596 ;
+}
+.tabs h4{
+  margin-top: 0.25em;
+  font-size: 1.25em;
+  padding: 0.25em;
+  text-align: center;
+}
 .other-sub,
 .other-units{
   justify-content: center;
   align-items: center;
   width: 90%;
-  background-color: rgb(250, 249, 247);
   padding: 1.25em;
-  height: fit-content;
-  box-shadow: 5px 5px 5px rgb(173, 173, 173);
+  height:fit-content;
   border-radius: 15px;
 }
 
- .other-sub-title,
+ .other-sub-title, 
  .other-units-title{
   padding-bottom:1em ;
   font-size: 1.25em;
@@ -20,7 +38,46 @@
  .other-sub-item,
  .other-note-item{
     font-weight: 600;
+    margin: 0.5em;
  }
+.line{
+  height: 50vh;
+  width: 2px;
+  background-color: rgb(225, 223, 223);
+}
+.single-sub{
+  border-radius: 10px;
+  padding: 1em;
+  text-decoration: none;
+  background-color: #faedcd;
+}
+.single-sub:hover{
+  text-align: center;
+}
+ .list-group a{
+  text-decoration: none;
+ }
+ .rel-chap{
+  height: fit-content;
+  overflow-y: hidden;
+ }
+.rel-chap-items{
+  text-align: center;
+ 
+}
+.rel-chap-items a{
+  text-decoration: none;
+}
+.rel-chap-items:hover{
+  opacity: 0.8;
+}
+ .bi:hover{
+  color: black;
+ }
+.buttons-group .bi{
+  font-size: 1.25em;
+  font-weight: 900;
+}
 
  @media screen and (max-width: 450px) {
   .other-sub,

@@ -63,7 +63,9 @@ ul {
 .sem-content:hover {
   color: rgb(96, 152, 224);
 }
-#actual-links,
+#actual-links{
+  display: block;
+}
 #actual-links-question,
 #actual-links-syllabus,
 #actual-links-answer
@@ -233,6 +235,7 @@ a.article-title:hover {
   font-size: 0.85em;
   font-weight: 700;
 }
+
 
 /* ------------------- */
 /* blog page*/

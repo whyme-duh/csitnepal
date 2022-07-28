@@ -74,9 +74,10 @@ def SubjectDetailView(request, semester_slug, subject_name):
 def NoteFileDetailView(request,semester_slug, subject_name,  filename):
     # this will retrieve an Subject object with requested semester and subjects
     slug = get_object_or_404(Subject, semester= semester_slug, slug = subject_name)
+    fname = get_object_or_404(NoteFile, slug = filename )
     return render(request, 'csit/SingleNoteFile.html', {
-        "notes" : NoteFile.objects.filter(name = filename),
-        "related_notes" : NoteFile.objects.filter(subject = slug).exclude(name = filename),
+        "notes" : NoteFile.objects.filter(slug = filename),
+        "related_notes" : NoteFile.objects.filter(subject = slug).exclude(slug = filename),
     })
 
 

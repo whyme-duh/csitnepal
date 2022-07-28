@@ -63,7 +63,7 @@ class Category(models.Model):
 
 class NoteFile(models.Model):
 	link = models.URLField(blank=False, null = True)
-	subject_name = models.CharField(blank=False, unique=False, max_length=90, null =True)
+	download_link = models.URLField(blank = False, null= True)
 	subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="files", null=True)
 	category = models.ForeignKey(Category , on_delete=models.SET_NULL, related_name= "categories", null = True)
 	name = models.CharField(max_length=80, blank = False, null = True)

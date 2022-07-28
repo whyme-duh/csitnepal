@@ -21,9 +21,6 @@
  .other-note-item{
     font-weight: 600;
  }
- .list-group{
-  overflow: scroll;
- }
 
  @media screen and (max-width: 450px) {
   .other-sub,

@@ -2,23 +2,39 @@
 
 {% block content %}
 <div class="container "">
+    
+
     <div class="row p-3 justify-content-between">
-        <div class="col-md-8 embed-responsive " style="height: 90vh;">
+        <div class="col-md-8 embed-responsive" style="height: 90vh;">
             {% for note in notes%}
-            <iframe src="{{note.link}}" class="embed-responsive-item " allowfullscreen ></iframe>
+            <div class=" d-flex justify-content-between">
+                <h5 class="note-title text-center ">{{note.name}}</h5>
+
+                <div class="buttons-group d-flex justify-content-between">
+                    <i class="bi bi-download m-2"></i>
+                    <i class="bi bi-eye m-2"></i>
+                    
+                </div>
+
+            </div>
+            <iframe src="{{note.link}}" class="embed-responsive-item mt-5 pt-2" allowfullscreen ></iframe>
        
             {% endfor %}
           
             
         </div>
         
-        <div class="other-units col-md-3 col-xs-3">
+        <div class="other-units col-md-3 col-xs-3 mt-5">
             <h5 class="other-units-title text-center">Other Units</h5>
-            {%for related_note in related_notes%}
-                <div class="list-group">
+            <div class="rel-chap">
+                {%for related_note in related_notes%}
+                <div class="rel-chap-items">
+                    {% if related_note.category.name == "NB" %}
                     <a href="{% url 'single-file-detail' related_note.subject.semester.id related_note.subject.slug related_note.slug %}" class="other-note-item list-group-item text-decoration-none text-dark">{{related_note.name}}</a>
+                    {%endif %}
                 </div>
             {% endfor %}
+            </div>
         </div>
     </div>
 </div>
