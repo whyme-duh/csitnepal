@@ -1,0 +1,86 @@
+{%extends "blog/base.html"%}
+{% load static %}
+{% block content%}
+<div class=" container-fluid front-page-img rounded d-flex justify-content-center align-items-center">
+    <img src="/media/webimages/background-1.jpg" alt = "background-image" class="background-image"> 
+    <div class="title m-5" >
+        <h1>CSIT NEPAL</h1>
+        <p>Resource Providing Platform Where You Can Find Books, Notes, etc For CSIT Students.</p>
+        <form action="" method="GET">
+            <input type="search" placeholder="Search Subjects ... " name="subjects">
+            <button type="submit"><i class="fa fa-search"></i></button>
+
+        </form>
+    </div>
+</div>
+<div class="container result">
+    
+    {% if semester %}
+    {% for sub in semester %}
+    <div class="content mt-3 ">
+        <div class="sem-box row d-flex justify-content-center  pt-3 pb-5" >
+            
+                <div class=" col-md-8 card m-2 " >
+                    {# it links up with subject-detail #}
+                    <a href = "{% url 'subject-detail' sub.semester.id sub.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
+                        <div class="row content-subject pt-3 d-flex justify-content-between">
+                            <h4 class="sem-title col-md-8">{{sub.title}}</h4>
+                            {% if sub.difficulty == "MEDIUM" %}
+                                <div class="col-md-4 sub-difficulty">
+                                    <p class="p-1"><strong>Difficulty</strong>: </p>
+                                    <div class="span p-1">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            
+                            {% elif sub.difficulty == "EASY" %}
+                                <div class="col-md-4 sub-difficulty">
+                                    <p class="p-1"><strong>Difficulty</strong>: </p>
+                                    <div class="span p-1">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                </div>
+                            {% elif sub.difficulty == "HARD" %}
+                                <div class="col-md-4 sub-difficulty">
+                                    <p class="p-1"><strong>Difficulty</strong>: </p>
+                                    <div class="span p-1">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        
+                        </div>
+                        <div class="content-code d-flex justify-content-between">
+                            <p class="article-content">{{sub.code}}</p>
+                            <p class="content"><strong>Full Marks : </strong>{{sub.fullMarks}}</p>
+                            <p class="content"><strong>Practical Marks : </strong>{{sub.labMarks}}</p>
+                        </div>
+                        
+
+
+                        
+                    </a>
+                </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="error-div">
+        <h1 class="error-text">No Result!</h1>
+
+    </div>
+    {% endif %}
+</div>
+{%endblock content%}

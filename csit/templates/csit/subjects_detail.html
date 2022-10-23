@@ -4,80 +4,92 @@
 
 
 {%block content %}
-	<div class="container pt-3">
-		<div class=" rounded d-flex justify-content-center align-items-center" style="background-color: #ddbea9;">
-			{%for sub in subjects|slice:"1" %}
-			<h1 class="title m-5">{{sub.semester}}</h1>
-			{%endfor %}	
-			
-		</div>
-		
-
-		<div class="content mt-3 ">
-			<p class="sub-intro text-center h2">Given below are the subjects.</p>
-			<div class="sem-box row d-flex justify-content-center  pt-3 pb-5" >
+	<div class="container pt-5 d-flex justify-content-between">
+		<div class="col-md-8">
+			<div class="sub-semester-div col-md-12">
+				{%for sub in subjects|slice:"1" %}
+				<h1 class="top-title">{{sub.semester}}</h1>
+				<p>{{sub.semester.content}}</p>
+				{%endfor %}	
 				
-				{% for sub in subjects %}
-					<div class=" col-md-8 card m-2 " >
-						{# it links up with subject-detail #}
-						<a href = "{% url 'subject-detail' sub.semester.id sub.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
-							<div class="row content-subject pt-3 d-flex justify-content-between">
-								<h4 class="sem-title col-md-8">{{sub.title}}</h4>
-								{% if sub.difficulty == "MEDIUM" %}
-									<div class="col-md-4 difficulty">
-										<p class="p-1"><strong>Difficulty</strong>: </p>
-										<div class="span p-1">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
+			</div>
+			
+	
+			<div class="content mt-3 ">
+				<div class="sem-box row d-flex justify-content-start  pt-3 pb-5" >
+					
+					{% for sub in subjects %}
+						<div class=" col-md-12 card m-2 " >
+							{# it links up with subject-detail #}
+							<a href = "{% url 'subject-detail' sub.semester.id sub.slug %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
+								<div class="row content-subject pt-3 d-flex justify-content-between">
+									<h4 class="sem-title col-md-8">{{sub.title}}</h4>
+									{% if sub.difficulty == "MEDIUM" %}
+										<div class="col-md-4 sub-difficulty">
+											<p class="p-1"><strong>Difficulty</strong>: </p>
+											<div class="span p-1">
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+											</div>
 										</div>
-									</div>
+									
+									{% elif sub.difficulty == "EASY" %}
+										<div class="col-md-4 sub-difficulty">
+											<p class="p-1"><strong>Difficulty</strong>: </p>
+											<div class="span p-1">
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+												<span class="fa fa-star"></span>
+											</div>
+										</div>
+									{% elif sub.difficulty == "HARD" %}
+										<div class="col-md-4 sub-difficulty">
+											<p class="p-1"><strong>Difficulty</strong>: </p>
+											<div class="span p-1">
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+												<span class="fa fa-star checked"></span>
+											</div>
+										</div>
+									{% endif %}
 								
-								{% elif sub.difficulty == "EASY" %}
-									<div class="col-md-4 difficulty ">
-										<p class="p-1"><strong>Difficulty</strong>: </p>
-										<div class="span p-1">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-									</div>
-								{% elif sub.difficulty == "HARD" %}
-									<div class="col-md-4 difficulty">
-										<p class="p-1"><strong>Difficulty</strong>: </p>
-										<div class="span p-1">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-										</div>
-									</div>
-								{% endif %}
-							
-							</div>
-							<div class="content-code d-flex justify-content-between">
-								<p class="article-content">{{sub.code}}</p>
-								<p class="content"><strong>Full Marks : </strong>{{sub.fullMarks}}</p>
-								<p class="content"><strong>Practical Marks : </strong>{{sub.labMarks}}</p>
-							</div>
-							
-
-
-							
-						</a>
-					</div>
+								</div>
+								<div class="content-code d-flex justify-content-between">
+									<p class="article-content">{{sub.code}}</p>
+									<p class="content"><strong>Full Marks : </strong>{{sub.fullMarks}}</p>
+									<p class="content"><strong>Practical Marks : </strong>{{sub.labMarks}}</p>
+								</div>
+								
+	
+	
+								
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+				<div class="row d-flex justify-content-evenly pt-4 pb-5"  >
+					
+				</div>
+			</div>
+			<div class="other-sem col-md-3">
+				<h1>Other Smesters</h1>
+				{% for sem in semester %}
+				<ul>
+					<li><a href="{% url 'semester-detail' sem.id %}">{{sem.title}}</a></li>
+				</ul>
 				{% endfor %}
 			</div>
+
 		</div>
-			<div class="row d-flex justify-content-evenly pt-4 pb-5"  >
-				
-			</div>
-		</div>
+		
 	</div>
 		
 {% endblock content %}

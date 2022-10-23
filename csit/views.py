@@ -29,6 +29,18 @@ class SemesterView(ListView):
     template_name = 'csit/csit.html'
     context_object_name = "semester"
 
+def semesterView(request):
+    if 'subjects' in request.GET:
+        result = request.GET['subjects']
+        semester = Subject.objects.filter(title__icontains = result)
+        file = 'csit/search_result.html'
+    else:
+        semester = Semester.objects.all()
+        file = 'csit/csit.html'
+    context= {
+        'semester': semester
+    }
+    return render(request, file,context )
 
 # it shows the list of the subjects on the respective semester
     # class SemesterDetailView(ListView):
@@ -46,7 +58,8 @@ class SemesterView(ListView):
 def semesterDetailView(request, semester_slug):
     id = get_object_or_404(Semester, pk = semester_slug)
     subjects = Subject.objects.filter(semester = id)
-    return render(request, 'csit/subjects_detail.html' , {"subjects" : subjects})
+    semesters = Semester.objects.filter().exclude(title = id)
+    return render(request, 'csit/subjects_detail.html' , {"subjects" : subjects, 'semester' : semesters})
 
 
 # it shows the list of the files on the respective subjects
@@ -79,5 +92,7 @@ def NoteFileDetailView(request,semester_slug, subject_name,  filename):
         "notes" : NoteFile.objects.filter(slug = filename),
         "related_notes" : NoteFile.objects.filter(subject = slug).exclude(slug = filename),
     })
+
+
 
 

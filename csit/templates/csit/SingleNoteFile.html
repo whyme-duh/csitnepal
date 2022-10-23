@@ -24,17 +24,15 @@
             
         </div>
         
-        <div class="other-units col-md-3 col-xs-3 mt-5">
+        <div class="other-units col-md-4 col-xs-3 mt-5">
             <h5 class="other-units-title text-center">Other Units</h5>
-            <div class="rel-chap">
                 {%for related_note in related_notes%}
-                <div class="rel-chap-items">
+                <div class="list-group">
                     {% if related_note.category.name == "NB" %}
-                    <a href="{% url 'single-file-detail' related_note.subject.semester.id related_note.subject.slug related_note.slug %}" class="other-note-item list-group-item text-decoration-none text-dark">{{related_note.name}}</a>
+                    <a href="{% url 'single-file-detail' related_note.subject.semester.id related_note.subject.slug related_note.slug %}" class="other-note-item single-sub text-decoration-none text-dark">{{related_note.name}}</a>
                     {%endif %}
                 </div>
             {% endfor %}
-            </div>
         </div>
     </div>
 </div>

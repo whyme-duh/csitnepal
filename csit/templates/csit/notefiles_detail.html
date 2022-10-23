@@ -4,43 +4,28 @@
 
 
 {%block content %}
-	<div class="container pt-5 mt-5">
+	<div class="container">
 		{% if notes %}
-			<div class=" rounded d-flex justify-content-center align-items-center" style="background-color: #ddbea9;">
-				{% for object in notes|slice:"1"%}
-					<h1 class="title m-5">{{object.subject}}</h1>
-
-				{%endfor %}
-			</div>
-			
 			<div class="content mt-2 pb-5">
-				
-				<div class="row tabs p-3">
-					<div class="col-md-2 tab-btn" id="notes-tab" onclick="display('actual-links', 'arrow-down')">
-						<h4>Notes</h4>
-					</div>
-					<div class="col-md-3 tab-btn" id="notes-tab" onclick="display('actual-links-question', 'arrow-down')">
-						<h4>Question Collections</h4>
-					</div>
-					<div class="col-md-2 tab-btn" id="notes-tab" >
-						<h4>Syllabus</h4>
-					</div>
-					<div class="col-md-2 tab-btn" id="notes-tab" >
-						<h4>Others</h4>
-					</div>
-					
-				</div>
 				<div class=" sem-box row d-flex justify-content-between pt-3"  >
 					<div class="col-md-8">
+						<div class="sub-semester-div col-md-12 "> 
+							{% for object in notes|slice:"1"%}
+								<h1 class="top-title">{{object.subject}}</h1>
+								<div class="marks">
+									<p>Full Marks : {{object.subject.fullMarks}}</p>
+									<p>Internal+ Lab Marks : {{object.subject.labMarks}}</p>
+									<p>Code : {{object.subject.code}}</p>
+								</div>
+			
+							{%endfor %}
+						</div>
+						
 						<div class=" col-md-12 col-sm-3 p-3 ">
-							
-						
-						
-							<div class=" pt-3" id="actual-links">
-						
+							<div class=" pt-3" id="actual-links"	>
 								{% for object in notes %}
 								{% if object.category.name == "NB" %}
-								<ol class="row d-flex align-items-center justify-content-between">
+								<ol class="single-card  row d-flex align-items-center justify-content-between">
 									<div class=" d-flex col-md-10 w-100">
 										<i class="fa fa-file-pdf-o pt-1" style="color: red;"></i>
 										<a  href="{% url 'single-file-detail' object.subject.semester.id object.subject.slug object.slug %}" >
@@ -112,14 +97,31 @@
 							</div>
 						</div>
 					</div>
-					<div class="other-sub col-md-4 col-xs-3 justify-content-center align-items-center">
-						<h5 class="other-sub-title text-center">Other Subjects</h5>
-						{% for sem in subjects %}
-							<div class="list-group">
-								<!-- this link will route to the individual subjects -->
-								<a href= "{% url 'subject-detail' sem.semester.id sem.slug %}" class="other-sub-item single-sub text-decoration-none text-dark">{{sem.title}}</a>
+					<div class="right-side col-md-4">
+						<div class="col-md-12 tabs p-3">
+							<div class="  tab-btn" id="notes-tab" onclick="display('actual-links', 'arrow-down')">
+								<h4>Notes</h4>
 							</div>
-						{% endfor %}
+							<div class=" tab-btn" id="notes-tab" onclick="display('actual-links-question', 'arrow-down')">
+								<h4>Question Collections</h4>
+							</div>
+							<div class=" tab-btn" id="notes-tab" >
+								<h4>Syllabus</h4>
+							</div>
+							<div class="tab-btn" id="notes-tab" >
+								<h4>Others</h4>
+							</div>
+							
+						</div>
+						<div class="other-sub col-md-12 col-xs-3 justify-content-center align-items-center">
+							<h5 class="other-sub-title text-center">Other Subjects</h5>
+							{% for sem in subjects %}
+								<div class="list-group">
+									<!-- this link will route to the individual subjects -->
+									<a href= "{% url 'subject-detail' sem.semester.id sem.slug %}" class="other-sub-item single-sub text-decoration-none text-dark">{{sem.title}}</a>
+								</div>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</div>

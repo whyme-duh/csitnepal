@@ -1,20 +1,28 @@
 {% extends "blog/base.html"%}
 {%block content %}
-	<div class="container pt-3">
-		<div class=" rounded d-flex justify-content-center align-items-center" style="background-color: #ddbea9;">
-			<h1 class="title m-5" >CSIT FILES</h1>
+	<div class=" container-fluid front-page-img rounded d-flex justify-content-center align-items-center">
+		<img src="/media/webimages/background-1.jpg" alt = "background-image" class="background-image"> 
+		<div class="title m-5" >
+			<h1>CSIT NEPAL</h1>
+			<p>Resource Providing Platform Where You Can Find Books, Notes, etc For CSIT Students.</p>
+			<form action="" method="GET">
+				<input type="search" placeholder="Search Subjects ... " name="subjects">
+				<button type="submit"><i class="fa fa-search"></i></button>
+
+			</form>
 		</div>
-		<div class="content mt-4 pb-5">
-			<p class="sub-intro text-center h5 pb-2">Here you can find the latest notes, syllabus, question collection and solutions pdf with ease. You can also access the user provided files.</br>Access the files of the respective semester through the following options.</p>
-			<div class="sem-box row d-flex justify-content-center  pt-3 pb-3" >
+	</div>
+	<div class="container-fluid pt-2">
+		
+		<div class="content  pb-5">
+			<!-- <p class="sub-intro text-center h5 pb-2">Here you can find the latest notes, syllabus, question collection and solutions pdf with ease. You can also access the user provided files.</br>Access the files of the respective semester through the following options.</p> -->
+			<div class="sem-box row d-flex justify-content-center  pt-1 pb-3 " >
 				{% for sem in semester %}
-					<div class="card col-sm-12 col-md-8  m-3 p-2" >
+					<div class="card col-sm-12 col-md-2  m-3 p-4" >
 						{# it links up with subject-detail #}
 						<a href = "{% url 'semester-detail' sem.id  %}" style="text-decoration: none;color: rgb(71, 70, 70);" >
-							<div class="row content pt-3 d-flex justify-content-between">
-								<h4 class="sem-title col-md-6 pl-4">{{sem.title}}</h4>
-								{% if sem.difficulty == "MEDIUM" %}
-									<div class=" col-md-6 difficulty  ">
+							{% if sem.difficulty == "MEDIUM" %}
+									<div class=" col-md-12 difficulty  ">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
 										<div class="span p-1">
 											<span class="fa fa-star checked"></span>
@@ -24,7 +32,6 @@
 											<span class="fa fa-star"></span>
 										</div>
 									</div>
-								
 								{% elif sem.difficulty == "EASY" %}
 									<div class="col-md-6 difficulty">
 										<p class="p-1"><strong>Difficulty</strong>: </p>
@@ -48,13 +55,17 @@
 										</div>
 									</div>
 								{% endif %}
+							<div class="row content pt-3 d-flex justify-content-between">
+								<h4 class="sem-title col-md-6 pb-2">{{sem.title}}</h4>
+								
 							
 							</div>
-							<p class="semester-desc pl-2">{{sem.content}}</p>
+							<p class="semester-desc ">{{sem.content|truncatewords:20}}</p>
 						</a>
 					</div>
 				{% endfor %}
 			</div>
 		</div>
+
 	</div>
 {% endblock content %}
